@@ -1,8 +1,9 @@
 from src.models.connection.db_connection_handler import DBConnectionHandler
 from src.models.entities.users import Users
+from src.models.repositories.interfaces.users_repository import UsersRepositoryInterface # noqa
 
 
-class UserRepository:
+class UserRepository(UsersRepositoryInterface):
     def __init__(self, db_connection: DBConnectionHandler):
         self.__db_connection_handler = db_connection
 

@@ -18,6 +18,7 @@ class UserRepositoryMock:
             )
         ]
 
+
 class UserRepositoryMockWithError:
     def __init__(self):
         self.select_user_att = {}
@@ -25,6 +26,7 @@ class UserRepositoryMockWithError:
     def select_user(self, person_name: str) -> list:
         self.select_user_att["person_name"] = person_name
         return []
+    
 
 def test_find_by_person_name():
     person_name = "my_person_name"

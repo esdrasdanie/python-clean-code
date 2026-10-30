@@ -20,12 +20,12 @@ class UsersRepository(UsersRepositoryInterface):
                 database.session.rollback()
                 raise exception
 
-            def select_user(self, person_name: str) -> list[Users]:
-                with self.__db_conn_handler as database:
-                    users = (
-                        database.session
-                            .query(Users)
-                            .filter(Users.person_name == person_name)
-                            .all()
-                    )
-                    return users
+    def select_user(self, person_name: str) -> list[Users]:
+        with self.__db_conn_handler as database:
+            users = (
+                database.session
+                    .query(Users)
+                    .filter(Users.person_name == person_name)
+                    .all()
+            )
+            return users

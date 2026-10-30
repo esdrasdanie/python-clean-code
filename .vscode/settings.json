@@ -1,7 +1,16 @@
 {
-    "files.exclude": {
-        "**/*.pyc": {"when": "$(basename).py"},
-        "**/__pycache__": true,
-        "**/.pytest_cache": true,
+  "files.exclude": {
+    "**/*.pyc": { "when": "$(basename).py" },
+    "**/__pycache__": true,
+    "**/.pytest_cache": true
+  },
+  "sqltools.connections": [
+    {
+      "previewLimit": 50,
+      "driver": "SQLite",
+      "name": "python-clean-code",
+      "group": "Default",
+      "database": "schema.db"
     }
+  ]
 }

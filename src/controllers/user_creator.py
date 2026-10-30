@@ -1,12 +1,12 @@
 from src.models.repositories.interfaces.users_repository import UsersRepositoryInterface
-from src.errors.error_types.http_bad_request import HttpBadRequestError
+from src.validators.errors.error_types.http_bad_request import HttpBadRequestError
 from .interfaces.user_creator import UserCreatorInterface
 
 class UserCreator(UserCreatorInterface):
     def __init__(self, users_repository: UsersRepositoryInterface): # Inverção da dependência - D SOLID
         self.__users_repo = users_repository
 
-        def insert_new_user(self, person_name: str, age: int, height: float) -> dict:
+    def insert_new_user(self, person_name: str, age: int, height: float) -> dict:
         self.__check_if_user_exists(person_name)
         self.__create_new_user(person_name, age, height)
         return self.__format_response()

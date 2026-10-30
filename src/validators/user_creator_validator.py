@@ -1,5 +1,5 @@
 from pydantic import BaseModel, constr, ValidationError
-from src.errors.error_types.http_unprocessable_entity import HttpUnprocessableEntityError
+from src.validators.errors.error_types.http_unprocessable_entity import HttpUnprocessableEntityError
 
 def user_creator_validator(http_request: any) -> None:
     class BodyData(BaseModel):

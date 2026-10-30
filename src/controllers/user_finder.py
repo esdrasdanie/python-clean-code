@@ -1,5 +1,5 @@
 from src.models.repositories.interfaces.users_repository import UsersRepositoryInterface
-from src.errors.error_types.http_not_found import HttpNotFoundError
+from src.validators.errors.error_types.http_not_found import HttpNotFoundError
 from .interfaces.user_finder import UserFinderInterface
 
 class UserFinder(UserFinderInterface):

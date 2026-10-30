@@ -1,5 +1,5 @@
 from src.controllers.interfaces.user_finder import UserFinderInterface
-from src.errors.error_handler import handle_errors
+from src.validators.errors.error_handler import handle_errors
 from .http_types.http_request import HttpRequest
 from .http_types.http_response import HttpResponse
 

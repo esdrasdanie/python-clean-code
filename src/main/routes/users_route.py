@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from src.views.http_types.http_request import HttpRequest
 
-from src.main.composer.user_creator_composer import user_creator_composer
+from src.main.composer.user_creator_compose import user_creator_composer
 from src.main.composer.user_finder_composer import user_finder_composer
 
 user_routes_bp = Blueprint("user_routes", __name__)

@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine
 from sqlalchemy.orm import sessionmaker
 
-class DBConnectionHandler:
+class DbConnectionHandler:
     def __init__(self):
         self.__connection_string = "sqlite:///schema.db"
         self.__engine = self.__create_database_engine()

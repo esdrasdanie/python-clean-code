@@ -1,7 +1,8 @@
+from src.controllers.interfaces.user_finder import UserFinderInterface
 from src.models.repositories.interfaces.users_repository import UsersRepositoryInterface # noqa
 
 
-class UserFinder:
+class UserFinder(UserFinderInterface):
     def __init__(self, users_repository: UsersRepositoryInterface): # Inversão da dependência - D # noqa
         self.__users_repo = users_repository
 

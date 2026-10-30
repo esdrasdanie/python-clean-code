@@ -1,7 +1,6 @@
 import pytest
 from src.models.entities.users import Users
-from user_finder import UserFinder
-
+from .user_finder import UserFinder
 
 class UserRepositoryMock:
     def __init__(self):
@@ -17,7 +16,6 @@ class UserRepositoryMock:
                 height=2.12
             )
         ]
-
 
 class UserRepositoryMockWithError:
     def __init__(self):
@@ -40,7 +38,6 @@ def test_find_by_person_name():
     assert response["Type"] == "Users"
     assert "attributes" in response
     assert isinstance(response["attributes"], list)
-
 
 def test_find_by_person_name_with_error():
     user_repo = UserRepositoryMockWithError()

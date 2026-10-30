@@ -1,9 +1,9 @@
-from src.controllers.interfaces.user_finder import UserFinderInterface
-from src.models.repositories.interfaces.users_repository import UsersRepositoryInterface # noqa
-
+from src.models.repositories.interfaces.users_repository import UsersRepositoryInterface
+from src.errors.error_types.http_not_found import HttpNotFoundError
+from .interfaces.user_finder import UserFinderInterface
 
 class UserFinder(UserFinderInterface):
-    def __init__(self, users_repository: UsersRepositoryInterface): # Inversão da dependência - D # noqa
+    def __init__(self, users_repository: UsersRepositoryInterface): # Inverção da dependência - D SOLID
         self.__users_repo = users_repository
 
     def find_by_person_name(self, person_name: str) -> dict:
@@ -13,7 +13,7 @@ class UserFinder(UserFinderInterface):
     def __select_and_validate_user(self, person_name: str) -> list:
         selected_users = self.__users_repo.select_user(person_name)
         if (not selected_users or len(selected_users) == 0):
-            raise Exception("Usuario nao encontrado!")
+            raise HttpNotFoundError("Usuario nao encontrado!")
 
         return selected_users
 
@@ -23,7 +23,7 @@ class UserFinder(UserFinderInterface):
             formatted_users.append({
                 "id": users.id,
                 "person_name": users.person_name,
-                "age": users.height
+                "age": users.age
             })
 
         return {

@@ -1,9 +1,7 @@
 import pytest
-from src.controllers.user_creator import UserCreator
+from .user_creator import UserCreator
 
-# Classe Mock
-
-
+# Class Mock
 class UserRepositoryMock:
     def __init__(self):
         self.select_user_att = {}
@@ -17,8 +15,6 @@ class UserRepositoryMock:
             self.insert_user_att["person_name"] = person_name
             self.insert_user_att["age"] = age
             self.insert_user_att["height"] = height
-            return
-
 
 class UserRepositoryMockWithError:
     def __init__(self):
@@ -40,8 +36,10 @@ def test_insert_new_user():
     response = user_creator.insert_new_user(person_name, age, height)
     
     assert user_repository.select_user_att["person_name"] == person_name
+    assert user_repository.insert_user_att["age"] == age
+    
     assert isinstance(response, dict)
-    assert "type" in response
+    assert "Type" in response
     assert response["count"] == 1
     assert response["message"] == "Usuario cadastrado com sucesso!"
 
@@ -53,4 +51,4 @@ def test_insert_new_user_with_error():
     with pytest.raises(Exception) as exc_info:
         user_creator.insert_new_user("something", 33, 1.11)
 
-    assert str(exc_info.value) == "Usuário já cadastrado!"
+    assert str(exc_info.value) == "Usuario Ja cadastrado!"

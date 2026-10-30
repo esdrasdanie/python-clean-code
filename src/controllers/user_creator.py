@@ -1,30 +1,30 @@
-from src.controllers.interfaces.user_creator import UserCreatorInterface
-from src.models.repositories.interfaces.users_repository import UsersRepositoryInterface # noqa
-
+from src.models.repositories.interfaces.users_repository import UsersRepositoryInterface
+from src.errors.error_types.http_bad_request import HttpBadRequestError
+from .interfaces.user_creator import UserCreatorInterface
 
 class UserCreator(UserCreatorInterface):
-    def __init__(self, users_repository: UsersRepositoryInterface):  # Inverção da dependência - D SOLID # noqa
-        self.__users_repository = users_repository
+    def __init__(self, users_repository: UsersRepositoryInterface): # Inverção da dependência - D SOLID
+        self.__users_repo = users_repository
 
-        def insert_new_user(self, person_name: str, age: int, height: float) -> dict: # noqa
+        def insert_new_user(self, person_name: str, age: int, height: float) -> dict:
         self.__check_if_user_exists(person_name)
         self.__create_new_user(person_name, age, height)
         return self.__format_response()
 
     def __check_if_user_exists(self, person_name: str) -> None:
         select_users = self.__users_repo.select_user(person_name)
-        if not select_users or len(select_users) == 0:
+        if (not select_users or len(select_users) == 0):
             return
 
-        raise Exception("Usuario já cadastrado!")
+        raise HttpBadRequestError("Usuario Ja cadastrado!")
 
-    def __create_new_user(self, person_name: str, age: int, height: float) -> None: # noqa
+    def __create_new_user(self, person_name: str, age: int, height: float) -> None:
         # outras atividades caso necessário
         self.__users_repo.insert_user(person_name, age, height)
 
     def __format_response(self) -> dict:
         return {
-            "type": "Users",
+            "Type": "Users",
             "count": 1,
-            "message": "Usuário cadastrado com sucesso!"
+            "message": "Usuario cadastrado com sucesso!"
         }

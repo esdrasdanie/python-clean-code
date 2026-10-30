@@ -1,11 +1,10 @@
-from src.models.connection.db_connection_handler import DBConnectionHandler
+from src.models.connection.db_connection_handler import DbConnectionHandler
 from src.models.entities.users import Users
-from src.models.repositories.interfaces.users_repository import UsersRepositoryInterface # noqa
-
+from .interfaces.users_repository import UsersRepositoryInterface
 
 class UserRepository(UsersRepositoryInterface):
-    def __init__(self, db_connection: DBConnectionHandler):
-        self.__db_connection_handler = db_connection
+    def __init__(self, db_conn_handler: DbConnectionHandler):
+        self.__db_conn_handler = db_conn_handler
 
     def insert_user(self, person_name: str, age: int, height: float) -> None:
         with self.__db_conn_handler as database:
@@ -25,8 +24,8 @@ class UserRepository(UsersRepositoryInterface):
                 with self.__db_conn_handler as database:
                     users = (
                         database.session
-                        .query(Users)
-                        .filter(Users.person_name == person_name)
-                        .all()
+                            .query(Users)
+                            .filter(Users.person_name == person_name)
+                            .all()
                     )
-                return users
+                    return users

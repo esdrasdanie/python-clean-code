@@ -1,18 +1,18 @@
 import pytest
-from src.models.connection.db_connection_handler import DBConnectionHandler
-from .users_repository import UserRepository
+from src.models.connection.db_connection_handler import DbConnectionHandler
+from .users_repository import UsersRepository
 
-@pytest.mark.skip(reason="Insert in db")
+@pytest.mark.skip(reason="Insert in DB")
 def test_users_repository():
-    db_conn = DBConnectionHandler()
-    user_repo = UserRepository(db_conn)
+    db_conn = DbConnectionHandler()
+    users_repo = UsersRepository(db_conn)
 
-    person_name = "Meu nome de teste"
+    person_name = "meu Nome de Teste"
     age = 55
     height = 7.34
 
-    user_repo.insert_user(person_name, age, height)
-    users = user_repo.select_user(person_name)
+    users_repo.insert_user(person_name, age, height)
+    users = users_repo.select_user(person_name)
 
     assert isinstance(users, list)
     assert len(users) == 1

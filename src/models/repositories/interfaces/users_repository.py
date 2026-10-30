@@ -1,7 +1,6 @@
 from abc import ABC, abstractmethod
 from src.models.entities.users import Users
 
-
 class UsersRepositoryInterface(ABC):
 
     @abstractmethod

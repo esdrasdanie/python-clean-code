@@ -1,10 +1,10 @@
 class MinhaClasse:
+
     def __enter__(self):
-        print("Entrei aqui")
+        print("Entrei aqui!")
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        print("Saí daqui")
-
+        print("Estou no exit")
 
 with MinhaClasse() as mc:
-    print("Entrei aqui")
+    print("Entrei no With")

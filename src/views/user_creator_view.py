@@ -1,4 +1,6 @@
 from src.controllers.interfaces.user_creator import UserCreatorInterface
+from src.validators.errors.error_handler import handle_errors
+from src.validators.user_creator_validator import user_creator_validator
 from http_types.http_request import HttpRequest
 from http_types.http_response import HttpResponse
 
@@ -9,6 +11,8 @@ class UserCreatorView:
 
     def handle_insert_new_user(self, req: HttpRequest) -> HttpResponse:
         try:
+            user_creator_validator(req)
+
             person_name = req.body["person_name"]
             age = req.body["age"]
             height = req.body["height"]
@@ -20,7 +24,4 @@ class UserCreatorView:
                 body=response
             )
         except Exception as exception:
-            return HttpResponse(
-                body={"error": str(exception)},
-                status_code=500
-            )
+            return handle_errors(exception)
